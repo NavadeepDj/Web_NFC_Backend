@@ -11,7 +11,7 @@ app = Flask(__name__)
 CORS(app)  # Enable CORS for all routes
 
 # Load your YOLOv8 model
-model = YOLO('best (15).pt')  # Replace with your model path
+model = YOLO('best (9).pt')  # Replace with your model path
 
 @app.route('/detect_person', methods=['POST'])
 def detect_person():
@@ -48,7 +48,8 @@ def detect_person():
             if cls == 0:  # 'person' class in COCO
                 detected_persons.append({
                     'bbox': [x1, y1, x2, y2],
-                    'confidence': conf
+                    'confidence': conf,
+                    'class': cls  # Added class information
                 })
                 
                 # Prepare label for the bounding box
@@ -61,7 +62,7 @@ def detect_person():
         # Convert image back to base64 for response
         _, img_encoded = cv2.imencode('.jpg', img)
         img_base64 = base64.b64encode(img_encoded).decode('utf-8')
-        
+        print(detected_persons)
         # Return response with detected persons and the modified image
         return jsonify({
             'success': True,
