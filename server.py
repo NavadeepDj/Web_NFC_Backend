@@ -45,19 +45,19 @@ def detect_person():
             cls = int(box.cls[0])  # Get class id
             
             # Check if the class id corresponds to 'person' (usually 0 in COCO dataset)
-            if cls == 0:  # 'person' class in COCO
-                detected_persons.append({
+            # 'person' class in COCO
+            detected_persons.append({
                     'bbox': [x1, y1, x2, y2],
                     'confidence': conf,
                     'class': cls  # Added class information
                 })
                 
                 # Prepare label for the bounding box
-                label = f"Person {conf:.2f}"
+            label = f"Person {conf:.2f}"
                 
                 # Draw bounding box and label on the image
-                cv2.rectangle(img, (x1, y1), (x2, y2), (0, 255, 0), 2)
-                cv2.putText(img, label, (x1, y1 - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (0, 255, 0), 2)
+            cv2.rectangle(img, (x1, y1), (x2, y2), (0, 255, 0), 2)
+            cv2.putText(img, label, (x1, y1 - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (0, 255, 0), 2)
         
         # Convert image back to base64 for response
         _, img_encoded = cv2.imencode('.jpg', img)
