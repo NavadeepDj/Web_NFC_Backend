@@ -11,7 +11,7 @@ app = Flask(__name__)
 CORS(app)  # Enable CORS for all routes
 
 # Load your YOLOv8 model
-model = YOLO(best (15).pt')  # Replace with your model path
+model = YOLO('best (15).pt')  # Replace with your model path
 
 @app.route('/detect_person', methods=['POST'])
 def detect_person():
