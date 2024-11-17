@@ -48,8 +48,8 @@ def detect_person():
             # 'person' class in COCO
             detected_persons.append({
                     'bbox': [x1, y1, x2, y2],
-                    'confidence': conf,
-                    'class': cls  # Added class information
+                    'class': int(cls),  # Keep consistent naming as 'class'
+                    'confidence': conf
                 })
                 
                 # Prepare label for the bounding box
